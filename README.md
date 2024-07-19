@@ -119,6 +119,7 @@ Stimulates the speech of a user in the interaction space
 
 #### userSpeechStart
 
+
 Stimulates SenseSpeechStart event. Can be used to stimulate user speech via typing
 
 #### gesture
@@ -128,3 +129,7 @@ Performs the given gesture
 **Parameters**
 
 -   `name`  Name of the gesture that needs to be performed
+
+How the DASS-21 test can be customized for DASS-42 is presented. This includes the number of statements, answer options, scale and assessment. Customizing the Number of Statements: Open the project and go to 'idle.kt', line 68. Change the variable val maxStatements = 21 to the number of statements in your customized test. In the start.kt define how many states you have and correspondingly how many state_scores you need. There are three scores in the template (scoreS, scoreA and scoreD). Exclude any scores you don't require, specifically, the scores that are unnecessary for your use case. Changing the Test Description: In 'newTest.kt', line 17, update the description of the test. Inserting Statements with Alternatives: Go to 'questionlist.kt' to insert your statements with the alternatives. You can add or remove Question constructors. Handling Correct Answers: The correct answer is taken from the resources folder. Check 'nlu.kt', line 10. Processing User Responses: User responses are processed in 'askQuestion.kt', for instance, line 60 processes onResponse and assigns 1 point to the appropriate score (depression, anxiety, or stress) based on the statement. Assessing Severity: In 'endTest'.kt, line 15, you need to change the function assessSeverity with your own assessment. Also, review lines 40-42 for the assessment of severity for each category.
+
+Similarly, the Perceived Stress Scale (PSS) can be personalised in the same way. Adjusting the Number of Statements: Open the project and navigate to 'idle.kt' at line 68. Modify the variable val maxStatements = 10 to reflect the number of statements in your personalised test. In the start.kt define the state, which is stress, and how many state_scores you need. Individual scores on the PSS can range from 0 to 40 with higher scores indicating higher perceived stress. Updating the Test Description: In 'newTest.kt' at line 17, modify the test description. Adding Statements with Alternatives: Navigate to 'questionlist.kt' to insert your statements along with their alternatives, which can be never, almost never, sometimes, often and very often. Managing Correct Answers: The correct answer is sourced from the resources folder. Refer to 'nlu.kt' at line 10. The scores vary from 0 to 4 according to the alternatives. However, questions 4, 5, 7 and 8 are reversed. For evaluating Severity: in the 'endTest.kt' at line 15, replace the function assessSeverity with the assessment method. In this case there are three ranges for stress - low, moderate and high perceived stress.
